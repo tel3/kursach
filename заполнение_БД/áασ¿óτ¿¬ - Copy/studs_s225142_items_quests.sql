@@ -1,0 +1,1 @@
+INSERT INTO s225142."items-quests" (id, itemid, questid) VALUES (1, 1, 4);

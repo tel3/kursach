@@ -1,0 +1,9 @@
+INSERT INTO s225142.itemtypes (id, name) VALUES (1, 'Weapons');
+INSERT INTO s225142.itemtypes (id, name) VALUES (2, 'Apparel');
+INSERT INTO s225142.itemtypes (id, name) VALUES (3, 'Potions');
+INSERT INTO s225142.itemtypes (id, name) VALUES (4, 'Scrolls');
+INSERT INTO s225142.itemtypes (id, name) VALUES (5, 'Food');
+INSERT INTO s225142.itemtypes (id, name) VALUES (6, 'Ingredients');
+INSERT INTO s225142.itemtypes (id, name) VALUES (7, 'Books');
+INSERT INTO s225142.itemtypes (id, name) VALUES (8, 'Keys');
+INSERT INTO s225142.itemtypes (id, name) VALUES (9, 'Miscellaneous');
