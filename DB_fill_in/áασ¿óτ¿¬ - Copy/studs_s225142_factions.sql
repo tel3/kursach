@@ -1,0 +1,10 @@
+INSERT INTO s225142.factions (id, name, initialleader, location) VALUES (1, 'Bards College', 3, 2);
+INSERT INTO s225142.factions (id, name, initialleader, location) VALUES (2, 'Blades', 4, 6);
+INSERT INTO s225142.factions (id, name, initialleader, location) VALUES (3, 'Graybeards', 8, 9);
+INSERT INTO s225142.factions (id, name, initialleader, location) VALUES (4, 'College of Winterhold', 5, 8);
+INSERT INTO s225142.factions (id, name, initialleader, location) VALUES (5, 'The Companions', 7, 9);
+INSERT INTO s225142.factions (id, name, initialleader, location) VALUES (6, 'Dark Brotherhood', 9, 5);
+INSERT INTO s225142.factions (id, name, initialleader, location) VALUES (7, 'Imperial Legion', 10, 2);
+INSERT INTO s225142.factions (id, name, initialleader, location) VALUES (8, 'Nightingales', 6, 7);
+INSERT INTO s225142.factions (id, name, initialleader, location) VALUES (9, 'Stormcloaks', 1, 1);
+INSERT INTO s225142.factions (id, name, initialleader, location) VALUES (10, 'Thieves Guild', 11, 7);
