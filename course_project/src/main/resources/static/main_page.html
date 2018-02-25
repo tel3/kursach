@@ -6,7 +6,13 @@
 			body {
 				background-image: url("another-rough-old-and-worn-parchment-paper.png");
 				background-repeat: no-repeat;
-				background-size: 2560px, 1440px;
+				background-size: 100%, 100%;
+			}
+
+			@media screen and (device-width: 1920px) {
+				body {
+					background-size: 1920px, 1080px;
+				}
 			}
 
 			h1 {
