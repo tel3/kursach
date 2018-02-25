@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "itemtypes")
 public class ItemType {
     @Id
-//    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     public Long id;
 
     public String name;
