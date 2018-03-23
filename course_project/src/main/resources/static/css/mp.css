@@ -1,0 +1,98 @@
+@font-face 
+{
+	font-family: DBfont;
+	src: url(../fonts/VINERITC.TTF);
+}
+
+body {
+	background-image: url("../backgrounds/another-rough-old-and-worn-parchment-paper.png");
+	background-repeat: no-repeat;
+	background-size: 100%, 100%;
+	background-attachment: fixed;
+	font-family: sans-serif;
+	font-size: 12pt;
+}
+
+@media screen and (device-width: 1920px) {
+	body {
+		background-size: 1920px, 1080px;
+		font-family: sans-serif;
+	}
+}
+
+h1 {
+	font-family: DBfont, arial;
+	text-align: center;
+	font-size: 70pt;
+	font-weight: bold;
+	margin-top: 30px;
+	margin-bottom: -10px;
+}
+
+h2 {
+	font-family: DBfont, arial;
+	font-size: 26pt;
+	text-align: center;
+	margin-top: 0px;
+}
+
+h3 {
+	font-size: 20pt;
+}
+
+h4 {
+	font-size: 16pt;
+}
+
+#top_bar {
+	margin: auto;
+	margin-top: 50px;
+    width: 974px;
+    height: 50px;
+}
+
+#main_block {
+	margin: auto;
+	margin-top: 5px;
+	width: 972px;
+}
+
+.text_block {
+	float: left;
+	display: inline-block;
+	width: 464px;
+	background-color: #202020;
+	color: white;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 150px;
+}
+
+.text_block hr {
+	width: 450px;
+}
+
+#left {
+	margin-right: 4px;
+}
+
+.button {
+	width: 240px;
+	height: 50px;
+	background-color: #303030;
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	border-radius: 4px;
+}
+
+.button:hover {
+	background-color: #444444;
+}
+
+.button:active {
+	background-color: #303030;
+}
