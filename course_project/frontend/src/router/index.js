@@ -8,7 +8,7 @@ import LoginPage from '@/components/LoginPage'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',	
+  mode: 'history',
   routes: [
     {
       path: '/',
