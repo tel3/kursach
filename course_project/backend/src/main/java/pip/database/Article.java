@@ -16,17 +16,17 @@ public class Article {
 
     public String author;
 
-    public String tags;
+    public String tag;
 
     @Lob @Basic(fetch = FetchType.LAZY)
     public byte[] content;
 
     public Article(){}
 
-    public Article(String name, String author, String tags){
+    public Article(String name, String author, String tag){
         this.name = name;
         this.author = author;
-        this.tags = tags;
+        this.tag = tag;
     }
 
     public Long getId() {
@@ -53,12 +53,12 @@ public class Article {
         this.author = author;
     }
 
-    public String getTags() {
-        return tags;
+    public String getTag() {
+        return tag;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     public byte[] getContent() {
