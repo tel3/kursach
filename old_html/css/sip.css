@@ -13,13 +13,6 @@ body {
 	font-size: 12pt;
 }
 
-@media screen and (max-width: 1920px) {
-	body {
-		background-size: 1920px, 1080px;
-		font-family: sans-serif;
-	}
-}
-
 h1 {
 	font-family: DBfont, arial;
 	text-align: center;
@@ -48,13 +41,14 @@ h4 {
 	margin: auto;
 	margin-top: 50px;
     width: 974px;
-    height: 50px;
 }
 
 #main_block {
 	margin: auto;
 	margin-top: 5px;
 	width: 972px;
+	margin-bottom: 150px;
+	overflow: auto;
 }
 
 .text_block {
@@ -67,11 +61,6 @@ h4 {
 	padding-left: 50px;
 	padding-top: 20px;
 	padding-right: 10px;
-	margin-bottom: 150px;
-}
-
-.text_block hr {
-	width: 450px;
 }
 
 #left {
@@ -110,4 +99,55 @@ h4 {
 	width: 160px;
 	height: 25px;
 	border-radius: 4px;
+}
+
+@media screen and (max-width: 2559px) {
+	body {
+		background-repeat:no-repeat;
+		background-size:cover;
+		background-position:center;
+		font-family: sans-serif;
+	}
+}
+
+
+@media screen and (max-width: 1218px) {
+	body {
+		background-image: url(../backgrounds/another-rough-old-and-worn-parchment-paper.jpg);
+		background-repeat:no-repeat;
+		background-size:cover;
+		background-position:center;
+	}
+}
+
+@media screen and (max-width: 671px) {
+	#main_block {
+		width: 80%;
+	}
+
+	.text_block {
+		padding-left: 2%;
+		padding-right: 2%;
+		width: 96%;
+		float: none;
+		position: relative;
+		margin-bottom: 1px;
+	}
+
+	#top_bar {
+		width: 80%;
+		overflow: auto;
+	}
+
+	.button {
+		margin-bottom: 1px;
+		width: 100%;
+		display: inline;
+
+	}
+
+	#left {
+		margin-right: 0px;
+	}
+
 }
