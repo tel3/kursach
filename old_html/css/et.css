@@ -17,13 +17,6 @@ body {
 	font-size: 12pt;
 }
 
-@media screen and (max-width: 1920px) {
-	body {
-		background-size: 1920px, 1080px;
-		font-family: sans-serif;
-	}
-}
-
 h1 {
 	font-family: DBfont, arial;
 	text-align: center;
@@ -145,4 +138,55 @@ img {
 	float: right;
 	margin-left: 40px;
 	height: auto;
+}
+
+@media screen and (max-width: 2559px) {
+	body {
+		background-repeat:no-repeat;
+		background-size:cover;
+		background-position:center;
+		font-family: sans-serif;
+	}
+}
+
+
+@media screen and (max-width: 1218px) {
+	body {
+		background-image: url(../backgrounds/another-rough-old-and-worn-parchment-paper.jpg);
+		background-repeat:no-repeat;
+		background-size:cover;
+		background-position:center;
+	}
+}
+
+@media screen and (max-width: 671px) {
+	#main_block {
+		width: 80%;
+	}
+
+	.text_block {
+		padding-left: 2%;
+		padding-right: 2%;
+		width: 96%;
+		float: none;
+		position: relative;
+		margin-bottom: 1px;
+	}
+
+	#top_bar {
+		width: 80%;
+		overflow: auto;
+	}
+
+	.button {
+		margin-bottom: 1px;
+		width: 100%;
+		display: inline;
+
+	}
+
+	#left {
+		margin-right: 0px;
+	}
+
 }
