@@ -30,13 +30,6 @@ body {
   font-size: 12pt;
 }
 
-@media screen and (device-width: 1920px) {
-  body {
-    background-size: 1920px, 1080px;
-    font-family: sans-serif;
-  }
-}
-
 h1 {
   font-family: DBfont, arial;
   text-align: center;
@@ -51,5 +44,23 @@ h2 {
   font-size: 26pt;
   text-align: center;
   margin-top: 0px;
+}
+
+@media screen and (max-width: 2559px) {
+  body {
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
+    font-family: sans-serif;
+  }
+}
+
+@media screen and (max-width: 1218px) {
+  body {
+    background-image: url(./assets/bg/background-mobile.jpg);
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
+  }
 }
 </style>
