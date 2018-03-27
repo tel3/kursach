@@ -55,6 +55,8 @@ h4 {
 	margin: auto;
 	margin-top: 5px;
 	width: 972px;
+	margin-bottom: 150px;
+	overflow: auto;
 }
 
 .text_block {
@@ -67,7 +69,6 @@ h4 {
 	padding-left: 50px;
 	padding-top: 20px;
 	padding-right: 10px;
-	margin-bottom: 150px;
 }
 
 .text_block hr {

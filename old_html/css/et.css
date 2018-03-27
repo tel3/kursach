@@ -67,6 +67,7 @@ h5 {
 	width: 972px;
 	height: auto;
 	padding-bottom: 150px;
+	overflow: auto;
 }
 
 .text_block {
