@@ -63,8 +63,9 @@ h5 {
 	padding-top: 5px;
 	padding-left: 40px;
 	padding-right: 40px;
-	padding-bottom: 80px;
 	margin-bottom: 15px;
+	overflow: auto;
+	padding-bottom: 10px;
 }
 
 #left {
@@ -172,6 +173,12 @@ h5 span {
 
 	#left {
 		margin-right: 0px;
+	}
+
+	.comments {
+		padding-left: 2%;
+		padding-right: 2%;
+		width: 96%;
 	}
 
 }
