@@ -28,7 +28,7 @@ public class ApiController {
         return result;
     }
 
-    @PostMapping(value = "upload_article")
+    @PostMapping(value = "/upload_article")
     public String handleArticleUpload(@RequestParam("file") MultipartFile file, @RequestParam("name") String name,
                                     @RequestParam("author") String author, @RequestParam("tags") String tags){
         if(!file.isEmpty()){

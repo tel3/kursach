@@ -21,6 +21,8 @@ public class Article {
     @Lob @Basic(fetch = FetchType.LAZY)
     public byte[] content;
 
+    public Article(){}
+
     public Article(String name, String author, String tags){
         this.name = name;
         this.author = author;
