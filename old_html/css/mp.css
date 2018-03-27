@@ -41,7 +41,6 @@ h4 {
 	margin: auto;
 	margin-top: 50px;
     width: 974px;
-    height: 50px;
 }
 
 #main_block {
@@ -60,10 +59,6 @@ h4 {
 	color: white;
 	padding-left: 10px;
 	padding-right: 10px;
-}
-
-.text_block hr {
-	width: 450px;
 }
 
 #left {
@@ -110,6 +105,33 @@ h4 {
 }
 
 @media screen and (max-width: 671px) {
+	#main_block {
+		width: 80%;
+	}
 
+	.text_block {
+		padding-left: 2%;
+		padding-right: 2%;
+		width: 96%;
+		float: none;
+		position: relative;
+		margin-bottom: 1px;
+	}
+
+	#top_bar {
+		width: 80%;
+		overflow: auto;
+	}
+
+	.button {
+		margin-bottom: 1px;
+		width: 100%;
+		display: inline;
+
+	}
+
+	#left {
+		margin-right: 0px;
+	}
 
 }
