@@ -6,6 +6,7 @@
     </header>
     <router-view/>
   </div>
+
 </template>
 
 <script>
@@ -24,7 +25,7 @@ export default {
 body {
   background-image: url("./assets/bg/background-image.png");
   background-repeat: no-repeat;
-  background-size: 100%, 100%;
+  background-size: 2560px, 1440px;
   background-attachment: fixed;
   font-family: sans-serif;
   font-size: 12pt;

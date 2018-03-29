@@ -15,7 +15,7 @@
           <input type="password" class="sign_form" name="password_up" placeholder="Введите свой пароль"> <br>
           <input type="password" class="sign_form" name="password_up_confirm" placeholder="Введите пароль повторно"> <br>
           <input type="submit" class="sign_button" name="sign_up" value="Зарегистрироваться">
-        </form> 
+        </form>
       </div>
   </div>
 </template>
