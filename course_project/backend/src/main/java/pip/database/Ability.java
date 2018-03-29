@@ -12,20 +12,20 @@ public class Ability {
     @Id
 
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
-    public String name;
+    private String name;
 
-    public String acquisition;
+    private String acquisition;
 
-    public Integer cooldown;
+    private Integer cooldown;
 
     @ManyToOne
     @JoinColumn(name = "abilitytypes_id")
-    public AbilityType type;
+    private AbilityType type;
 
     @ManyToOne
     @JoinColumn(name = "effects_id")
-    public Effect effect;
+    private Effect effect;
 
 }

@@ -11,19 +11,19 @@ import javax.persistence.*;
 public class Spell {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
-    public String name;
+    private String name;
 
-    public Integer basecost;
+    private Integer basecost;
 
     @ManyToOne
     @JoinColumn(name = "schools_id")
-    public School school;
+    private School school;
 
-    public Integer level;
+    private Integer level;
 
     @ManyToOne
     @JoinColumn(name = "effects_id")
-    public Effect effects;
+    private Effect effects;
 }

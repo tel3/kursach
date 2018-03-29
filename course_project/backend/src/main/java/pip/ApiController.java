@@ -22,7 +22,7 @@ public class ApiController {
     }
 
 
-    @GetMapping(value = "/greeting/{name}")
+    @PostMapping(value = "/greeting/{name}")
     public @ResponseBody String getGreeting(@PathVariable String name){
         String result = "Hello, " + name;
         return result;
@@ -46,7 +46,7 @@ public class ApiController {
         }
     }
 
-    @GetMapping("/article/id/{id}")
+    @PostMapping("/article/id/{id}")
     public ResponseEntity<Article> downloadArticle(@PathVariable("id") Long articleId){
         Article article = articleRep.findOne(articleId);
         if (article == null){
@@ -56,8 +56,8 @@ public class ApiController {
         return ResponseEntity.ok().body(article);
     }
 
-    @GetMapping("/article/tag/{tag}")
-    public Iterable<Article> getArticlesByTag(String tag){
+    @PostMapping("/article/tag/{tag}")
+    public Iterable<Article> getArticlesByTag(@PathVariable("tag") String tag){
         return articleRep.findByTag(tag);
     }
 

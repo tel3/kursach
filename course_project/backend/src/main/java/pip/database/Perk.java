@@ -11,18 +11,18 @@ import javax.persistence.*;
 public class Perk {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
-    public String name;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "effects_id")
-    public Effect effect;
+    private Effect effect;
 
-    public Integer levelreq;
+    private Integer levelreq;
 
     @ManyToOne
     @JoinColumn(name = "skills_id")
-    public Skill skilltree;
+    private Skill skilltree;
 
 }
