@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/greeting")
+@RequestMapping("/api")
 public class ApiController {
 
     private final ArticleRep articleRep;
@@ -22,7 +22,7 @@ public class ApiController {
     }
 
 
-    @GetMapping(value = "/{name}")
+    @PostMapping(value = "/greeting/{name}")
     public @ResponseBody String getGreeting(@PathVariable String name){
         String result = "Hello, " + name;
         return result;
@@ -30,11 +30,11 @@ public class ApiController {
 
     @PostMapping(value = "/upload_article")
     public String handleArticleUpload(@RequestParam("file") MultipartFile file, @RequestParam("name") String name,
-                                    @RequestParam("author") String author, @RequestParam("tags") String tags){
+                                    @RequestParam("author") String author, @RequestParam("tag") String tag){
         if(!file.isEmpty()){
             try {
                 byte[] bytes = IOUtils.toByteArray(file.getInputStream());
-                Article article = new Article(name, author, tags);
+                Article article = new Article(name, author, tag);
                 article.setContent(bytes);
                 articleRep.save(article);
                 return "redirect:/api";
@@ -46,7 +46,7 @@ public class ApiController {
         }
     }
 
-    @GetMapping("/article/{id}")
+    @PostMapping("/article/id/{id}")
     public ResponseEntity<Article> downloadArticle(@PathVariable("id") Long articleId){
         Article article = articleRep.findOne(articleId);
         if (article == null){
@@ -54,6 +54,11 @@ public class ApiController {
         }
 
         return ResponseEntity.ok().body(article);
+    }
+
+    @PostMapping("/article/tag/{tag}")
+    public Iterable<Article> getArticlesByTag(@PathVariable("tag") String tag){
+        return articleRep.findByTag(tag);
     }
 
 

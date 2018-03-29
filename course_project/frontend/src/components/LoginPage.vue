@@ -1,113 +1,138 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+  <div id="main_block">
+    <div class="text_block" id="left">
+      <h4>Войти:</h4>
+        <form>
+          <input type="text" class="sign_form" name="username_in" placeholder="Введите логин"> <br>
+          <input type="password" class="sign_form" name="password_in" placeholder="Введите пароль"> <br>
+          <input type="submit" class="sign_button" name="sign_in" value="Войти">
+        </form>
+      </div>
+      <div class="text_block">
+        <h4>Зарегистрироваться:</h4>
+        <form>
+          <input type="text" class="sign_form" name="username_up" placeholder="Введите действительный адрес электронной почты"> <br>
+          <input type="password" class="sign_form" name="password_up" placeholder="Введите свой пароль"> <br>
+          <input type="password" class="sign_form" name="password_up_confirm" placeholder="Введите пароль повторно"> <br>
+          <input type="submit" class="sign_button" name="sign_up" value="Зарегистрироваться">
+        </form> 
+      </div>
   </div>
 </template>
 
 <script>
+import TopButtonComponent from './elements/TopButtonComponent'
+
 export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+  name: 'LoginPage',
+  components: {
+    'top-button-component': TopButtonComponent
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+h3 {
+  font-size: 20pt;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+h4 {
+  font-size: 16pt;
 }
-li {
+
+#top_bar {
+  margin: auto;
+  margin-top: 50px;
+    width: 974px;
+}
+
+#main_block {
+  margin: auto;
+  margin-top: 5px;
+  width: 972px;
+  margin-bottom: 150px;
+  overflow: auto;
+}
+
+.text_block {
+  float: left;
   display: inline-block;
-  margin: 0 10px;
+  width: 424px;
+  background-color: #202020;
+  color: white;
+  height: 280px;
+  padding-left: 50px;
+  padding-top: 20px;
+  padding-right: 10px;
 }
-a {
-  color: #42b983;
+
+#left {
+  margin-right: 4px;
+}
+
+.button {
+  width: 240px;
+  height: 50px;
+  background-color: #303030;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.button:hover {
+  background-color: #444444;
+}
+
+.button:active {
+  background-color: #303030;
+}
+
+.sign_form {
+  margin-bottom: 12px;
+  width: 350px;
+  height: 25px;
+  border-radius: 4px;
+}
+
+.sign_button {
+  width: 160px;
+  height: 25px;
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 671px) {
+  #main_block {
+    width: 80%;
+  }
+
+  .text_block {
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 96%;
+    float: none;
+    position: relative;
+    margin-bottom: 1px;
+  }
+
+  #top_bar {
+    width: 80%;
+    overflow: auto;
+  }
+
+  .button {
+    margin-bottom: 1px;
+    width: 100%;
+    display: inline;
+
+  }
+
+  #left {
+    margin-right: 0px;
+  }
 }
 </style>

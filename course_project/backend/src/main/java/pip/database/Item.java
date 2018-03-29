@@ -11,40 +11,40 @@ import javax.persistence.*;
 public class Item {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
-    public String name;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "itemtypes_id")
-    public ItemType itemtype;
+    private ItemType itemtype;
 
     @ManyToOne
     @JoinColumn(name = "itemsubtypes_id")
-    public ItemSubtype itemsubtype;
+    private ItemSubtype itemsubtype;
 
-    public Integer damage;
+    private Integer damage;
 
-    public Integer armor;
+    private Integer armor;
 
-    public Integer weight;
+    private Integer weight;
 
-    public Integer price;
+    private Integer price;
 
     @ManyToOne
     @JoinColumn(name = "perks_id")
-    public Perk perk;
+    private Perk perk;
 
     @ManyToOne
     @JoinColumn(name = "bodyparts_id")
-    public BodyPart bodypart;
+    private BodyPart bodypart;
 
     @ManyToOne
     @JoinColumn(name = "items_id")
-    public Item upgrade;
+    private Item upgrade;
 
     @ManyToOne
     @JoinColumn(name = "effects_id")
-    public Effect effect;
+    private Effect effect;
 
 }

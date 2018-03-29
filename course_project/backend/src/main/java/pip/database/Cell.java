@@ -10,16 +10,16 @@ import javax.persistence.*;
 public class Cell {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
-    public String name;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "locations_id")
-    public Location location;
+    private Location location;
 
     @ManyToOne
     @JoinColumn(name = "celltypes_id")
-    public CellType type;
+    private CellType type;
 
 }

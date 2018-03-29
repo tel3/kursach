@@ -3,6 +3,7 @@ package pip.database;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -10,23 +11,28 @@ import javax.persistence.*;
 public class Article {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
-    public String name;
+    private String name;
 
-    public String author;
+    private String author;
 
-    public String tags;
+    private String tag;
 
     @Lob @Basic(fetch = FetchType.LAZY)
-    public byte[] content;
+    private byte[] content;
 
-    public Article(){}
+    @Convert(converter = LocalDateTimeConverter.class)
+    private LocalDateTime dateTime;
 
-    public Article(String name, String author, String tags){
+    public Article(){
+        dateTime = LocalDateTime.now();
+    }
+
+    public Article(String name, String author, String tag){
         this.name = name;
         this.author = author;
-        this.tags = tags;
+        this.tag = tag;
     }
 
     public Long getId() {
@@ -53,12 +59,12 @@ public class Article {
         this.author = author;
     }
 
-    public String getTags() {
-        return tags;
+    public String getTag() {
+        return tag;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     public byte[] getContent() {
