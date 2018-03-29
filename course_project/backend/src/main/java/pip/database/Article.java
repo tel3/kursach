@@ -25,8 +25,11 @@ public class Article {
     @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime dateTime;
 
+    private int rating;
+
     public Article(){
         dateTime = LocalDateTime.now();
+        rating = 0;
     }
 
     public Article(String name, String author, String tag){
