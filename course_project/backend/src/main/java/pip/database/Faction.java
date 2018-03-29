@@ -11,16 +11,16 @@ import javax.persistence.*;
 public class Faction {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
-    public String name;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "locations_id")
-    public Location location;
+    private Location location;
 
     @ManyToOne
     @JoinColumn(name = "actors_id")
-    public Actor initialleader;
+    private Actor initialleader;
 
 }

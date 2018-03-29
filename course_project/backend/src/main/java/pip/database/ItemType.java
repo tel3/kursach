@@ -10,8 +10,8 @@ import javax.persistence.*;
 public class ItemType {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
-    public String name;
+    private String name;
 
 }

@@ -11,11 +11,11 @@ import javax.persistence.*;
 public class Skill {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
-    public String name;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "effects_id")
-    public Effect effect;
+    private Effect effect;
 }

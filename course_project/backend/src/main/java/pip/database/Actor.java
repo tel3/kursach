@@ -11,28 +11,24 @@ import javax.persistence.*;
 public class Actor {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
-    public String name;
+    private String name;
 
-    public Character gender;
+    private Character gender;
 
     @ManyToOne
     @JoinColumn(name = "races_id")
-    public Race race;
+    private Race race;
 
     @ManyToOne
     @JoinColumn(name = "factions_id")
-    public Faction faction;
+    private Faction faction;
 
-//    @ManyToOne
-//    @JoinColumn(name = "class_id")
-//    public Class aclass;
+    private Boolean hostility;
 
-    public Boolean hostility;
+    private Boolean interactivity;
 
-    public Boolean interactivity;
-
-    public Boolean uniqueness;
+    private Boolean uniqueness;
 
 }

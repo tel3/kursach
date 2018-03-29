@@ -18,6 +18,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .formLogin();
+
+//        http
+//                .csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers(PROTECTED_RESOURCES)
+//                .hasRole("USER")
+//                .anyRequest()
+//                .permitAll()
+//                .and()
+//                .anonymous().disable()
+//                .exceptionHandling()
+//                .authenticationEntryPoint(new org.springframework.boot.autoconfigure.security.Http401AuthenticationEntryPoint("headerValue"));
     }
 
     @Autowired
