@@ -54,7 +54,7 @@ public class ApiController {
     @ResponseBody
     public ResponseEntity<Iterable<Article>> getArticlesByTag(@PathVariable("tag") String tag){  //empty json
         List<Article> articles = articleRep.findByTag(tag);
-        if (articles == null){
+        if (articles.isEmpty()){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
         return ResponseEntity.ok().body(articles);
