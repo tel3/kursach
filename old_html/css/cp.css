@@ -78,11 +78,23 @@ h4 {
 	border-radius: 4px;
 }
 
-.button:hover {
+.create_button {
+	float: right;
+	margin: 20px 20px 0px 20px;
+	height: 40px;
+	font-size: 12pt;
+	background-color: #404040;
+	border: none;
+	color: white;
+	border-radius: 6px;
+	width: 200px;
+}
+
+.button:hover, .create_button:hover {
 	background-color: #444444;
 }
 
-.button:active {
+.button:active, .create_button:active {
 	background-color: #303030;
 }
 
