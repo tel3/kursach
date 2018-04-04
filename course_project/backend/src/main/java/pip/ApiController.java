@@ -1,6 +1,7 @@
 package pip;
 
 import org.apache.commons.io.IOUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.multipart.MultipartFile;
 import pip.database.Article;
 import pip.database.ArticleRep;
@@ -9,6 +10,9 @@ import pip.database.ItemTypeRep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Blob;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -21,46 +25,40 @@ public class ApiController {
         this.articleRep = articleRep;
     }
 
-
-    @PostMapping(value = "/greeting/{name}")
-    public @ResponseBody String getGreeting(@PathVariable String name){
-        String result = "Hello, " + name;
-        return result;
-    }
-
-    @PostMapping(value = "/upload_article")
-    public String handleArticleUpload(@RequestParam("file") MultipartFile file, @RequestParam("name") String name,
-                                    @RequestParam("author") String author, @RequestParam("tag") String tag){
-        if(!file.isEmpty()){
-            try {
-                byte[] bytes = IOUtils.toByteArray(file.getInputStream());
-                Article article = new Article(name, author, tag);
-                article.setContent(bytes);
-                articleRep.save(article);
-                return "redirect:/api";
-            } catch (Exception e){
-                return "You failed to upload article" + " => " + e.getMessage();
-            }
-        } else {
-            return "redirect:/api";
+    @PostMapping(value = "/article/upload_article")
+    public ResponseEntity uploadArticle(@RequestParam("file") byte[] file, @RequestParam("name") String name,
+                                @RequestParam("author") String author, @RequestParam("tag") String tag){
+        try {
+//            byte[] bytes = IOUtils.toByteArray(file);
+            Article article = new Article(name, author, tag);
+            article.setContent(file);
+            articleRep.save(article);
+            return ResponseEntity.ok().body(null);
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You failed to upload article" + " => " + e.getMessage());
         }
     }
 
-    @PostMapping("/article/id/{id}")
+    @GetMapping("/article/id/{id}")
+    @ResponseBody
     public ResponseEntity<Article> downloadArticle(@PathVariable("id") Long articleId){
         Article article = articleRep.findOne(articleId);
         if (article == null){
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-
         return ResponseEntity.ok().body(article);
     }
 
-    @PostMapping("/article/tag/{tag}")
-    public Iterable<Article> getArticlesByTag(@PathVariable("tag") String tag){
-        return articleRep.findByTag(tag);
+    @GetMapping("/article/tag/{tag}")
+    @ResponseBody
+    public ResponseEntity<Iterable<Article>> getArticlesByTag(@PathVariable("tag") String tag){  //empty json
+        List<Article> articles = articleRep.findByTag(tag);
+        if (articles.isEmpty()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        return ResponseEntity.ok().body(articles);
     }
-
 
 //    private final ItemTypeRep itemTypeRep;
 //

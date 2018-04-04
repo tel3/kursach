@@ -14,17 +14,14 @@ public class User {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    private String login;
+    private String email;
 
     private String password;
 
-    private String email;
-
     private String role;
 
-    private Bool isBanned;
-
-    public User(){}
+    public User(){
+    }
 
     public Long getId() {
         return id;
@@ -32,14 +29,6 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getPassword() {
@@ -66,11 +55,4 @@ public class User {
         this.role = role;
     }
 
-    public Bool getIsBanned() {
-        return isBanned;
-    }
-
-    public void setIsBanned(Bool isBanned) {
-        this.isBanned = isBanned;
-    }
 }

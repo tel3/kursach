@@ -7,7 +7,7 @@
 body {
 	background-image: url("../backgrounds/another-rough-old-and-worn-parchment-paper.png");
 	background-repeat: no-repeat;
-	background-size: 100%, 100%;
+	background-size: 2560px, 1440px;
 	background-attachment: fixed;
 	font-family: sans-serif;
 	font-size: 12pt;
@@ -47,18 +47,20 @@ h4 {
 	margin: auto;
 	margin-top: 5px;
 	width: 972px;
-	overflow: auto;
 	margin-bottom: 150px;
+	overflow: auto;
 }
 
 .text_block {
 	float: left;
-	width: 962px;
+	display: inline-block;
+	width: 424px;
 	background-color: #202020;
 	color: white;
-	padding-left: 10px;
-	padding-right: 0px;
-	overflow: auto;
+	height: 280px;
+	padding-left: 50px;
+	padding-top: 20px;
+	padding-right: 10px;
 }
 
 #left {
@@ -78,40 +80,29 @@ h4 {
 	border-radius: 4px;
 }
 
-.create_button {
-	float: right;
-	margin: 20px 20px 0px 20px;
-	height: 40px;
-	font-size: 12pt;
-	background-color: #404040;
-	border: none;
-	color: white;
-	border-radius: 6px;
-	width: 200px;
-}
-
-.button:hover, .create_button:hover {
+.button:hover {
 	background-color: #444444;
 }
 
-.button:active, .create_button:active {
+.button:active {
 	background-color: #303030;
 }
 
-.row {
-	display: flex;
+.sign_form {
+	margin-bottom: 12px;
+	width: 350px;
+	height: 25px;
+	border-radius: 4px;
 }
 
-.column {
-    flex: 80%;
-    padding: 10px;
+.sign_button {
+	width: 160px;
+	height: 25px;
+	border-radius: 4px;
 }
 
-.small_column {
-	flex: 20%;
-	background-color: #303030;
-	padding-left: 10px;
-	margin-top: 30px;
+select {
+	margin-bottom: 10px;
 }
 
 @media screen and (max-width: 2559px) {
