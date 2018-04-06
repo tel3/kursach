@@ -40,7 +40,7 @@ h4 {
 #top_bar {
 	margin: auto;
 	margin-top: 50px;
-    width: 974px;
+  width: 974px;
 }
 
 #main_block {
@@ -114,7 +114,7 @@ h4 {
 		padding-right: 2%;
 		width: 96%;
 		float: none;
-		position: relative;
+		position: center;
 		margin-bottom: 1px;
 	}
 
@@ -127,7 +127,6 @@ h4 {
 		margin-bottom: 1px;
 		width: 100%;
 		display: inline;
-
 	}
 
 	#left {

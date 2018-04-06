@@ -1,9 +1,5 @@
 <template>
   <div id="main_block">
-    <top-button-component
-      v-bind:status="false"
-      role="guest"
-    ></top-button-component>
     <div class="text_block" id="left">
       <h3>Недавно добавленные статьи</h3>
       <hr>
@@ -38,13 +34,8 @@
 </template>
 
 <script>
-import TopButtonComponent from './elements/TopButtonComponent'
-
 export default {
-  name: 'HelloWorld',
-  components: {
-    'top-button-component': TopButtonComponent
-  }
+  name: 'MainPage'
 }
 </script>
 
