@@ -10,7 +10,6 @@
     ></top-button-component>
     <router-view/>
   </div>
-
 </template>
 
 <script>

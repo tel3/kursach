@@ -31,7 +31,7 @@ export default new Router({
       component: ArticlePage
     },
     {
-      path: '/article/edit/',
+      path: '/edit/',
       name: 'EditPage',
       component: EditPage
     },

@@ -1,94 +1,43 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+  <div id="main_block">
+    <div class="text_block">
+      <h4>Создать статью:</h4>
+      <form>
+        <input type="text" class="name_form" id="article_name" placeholder="Введите название статьи"> <br>
+        <textarea id="text_area" placeholder="Текст статьи"></textarea><br>
+      </form>
+      <button class="submit_button" v-on:click="sendData">Отправить статью</button>
+    </div>
   </div>
 </template>
 
 <script>
+/* eslint-disable */
+import axios from 'axios'
+
 export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  name: 'EditPage',
+  methods: {
+    sendData: function () {
+      let formData = new FormData();
+      let data_string = document.getElementById("text_area").value;
+      let data = new Blob([data_string], {
+        type: 'text/plain'
+      });
+      let name = document.getElementById("article_name").value;
+      let author = "hui ego znaet";
+      let tag = "i eto tozhe";
+      formData.append("file", data);
+      formData.append("name", name);
+      formData.append("author", author);
+      formData.append("tag", tag);
+      axios.post("/api/article/upload_article", formData)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        }); 
     }
   }
 }
@@ -96,18 +45,98 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+h3 {
+  font-size: 20pt;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+h4 {
+  font-size: 16pt;
 }
-li {
+
+#main_block {
+  margin: auto;
+  margin-top: 5px;
+  width: 972px;
+  margin-bottom: 150px;
+  overflow: auto;
+}
+
+.text_block {
+  float: left;
   display: inline-block;
-  margin: 0 10px;
+  width: 892px;
+  background-color: #202020;
+  color: white;
+  padding-left: 40px;
+  padding-top: 20px;
+  padding-right: 40px;
+  overflow: auto;
 }
-a {
-  color: #42b983;
+
+#left {
+  margin-right: 4px;
+}
+
+.button {
+  width: 240px;
+  height: 50px;
+  background-color: #303030;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.button:hover {
+  background-color: #444444;
+}
+
+.button:active {
+  background-color: #303030;
+}
+
+.name_form {
+  margin-bottom: 12px;
+  width: 350px;
+  height: 25px;
+  border-radius: 4px;
+}
+
+.submit_button {
+  width: 160px;
+  height: 25px;
+  border-radius: 4px;
+  margin-top: 7px;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 671px) {
+  #main_block {
+    width: 80%;
+  }
+
+  .text_block {
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 96%;
+    float: none;
+    position: relative;
+    margin-bottom: 1px;
+  }
+
+  .button {
+    margin-bottom: 1px;
+    width: 100%;
+    display: inline;
+
+  }
+
+  #left {
+    margin-right: 0px;
+  }
+
 }
 </style>
