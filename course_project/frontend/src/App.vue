@@ -14,6 +14,7 @@
 
 <script>
 import TopButtonComponent from './components/elements/TopButtonComponent'
+import axios from 'axios'
 
 export default {
   name: 'App',
