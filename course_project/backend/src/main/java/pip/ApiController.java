@@ -3,10 +3,7 @@ package pip;
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.multipart.MultipartFile;
-import pip.database.Article;
-import pip.database.ArticleRep;
-import pip.database.ItemType;
-import pip.database.ItemTypeRep;
+import pip.database.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +16,12 @@ import java.util.List;
 public class ApiController {
 
     private final ArticleRep articleRep;
+    private final UserRep userRep;
 
     @Autowired
-    public ApiController(ArticleRep articleRep){
+    public ApiController(ArticleRep articleRep, UserRep userRep){
         this.articleRep = articleRep;
+        this.userRep = userRep;
     }
 
     @PostMapping(value = "/article/upload_article")
@@ -58,6 +57,28 @@ public class ApiController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
         return ResponseEntity.ok().body(articles);
+    }
+
+    @RequestMapping(path = "/user", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public @ResponseBody long addNewUser (@RequestParam String password, @RequestParam String email) {
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setRole("USER");
+        userRep.save(user);
+
+        return user.getId();
+    }
+
+    @GetMapping(path="/user/{id}")
+    public @ResponseBody User getUserById(@PathVariable("id") long id) {
+        return userRep.findOne(id);
+    }
+
+    @GetMapping(path = "/user/{email}")
+    public @ResponseBody User getUserByEmail(@PathVariable("email") String email){
+        return userRep.findByEmail(email);
     }
 
 //    private final ItemTypeRep itemTypeRep;
