@@ -1,6 +1,8 @@
 package pip;
 
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.multipart.MultipartFile;
 import pip.database.*;
@@ -15,6 +17,8 @@ import java.util.List;
 @RequestMapping("/api")
 public class ApiController {
 
+    private static final Logger LOG = LoggerFactory.getLogger(ApiController.class);
+
     private final ArticleRep articleRep;
     private final UserRep userRep;
 
@@ -25,16 +29,19 @@ public class ApiController {
     }
 
     @PostMapping(value = "/article/upload_article")
-    public ResponseEntity uploadArticle(@RequestParam("file") byte[] file, @RequestParam("name") String name,
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity uploadArticle(@RequestParam("file") String file, @RequestParam("name") String name,
                                 @RequestParam("author") String author, @RequestParam("tag") String tag){
         try {
-//            byte[] bytes = IOUtils.toByteArray(file);
+            byte[] bytes = file.getBytes();
             Article article = new Article(name, author, tag);
-            article.setContent(file);
+            article.setContent(bytes);
             articleRep.save(article);
+            LOG.info("article uploaded!");
             return ResponseEntity.ok().body(null);
         }
         catch (Exception e){
+            LOG.info(e.getLocalizedMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You failed to upload article" + " => " + e.getMessage());
         }
     }
@@ -59,7 +66,7 @@ public class ApiController {
         return ResponseEntity.ok().body(articles);
     }
 
-    @RequestMapping(path = "/user", method = RequestMethod.POST)
+    @PostMapping(path = "/user")
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody long addNewUser (@RequestParam String password, @RequestParam String email) {
         User user = new User();
@@ -80,28 +87,4 @@ public class ApiController {
     public @ResponseBody User getUserByEmail(@PathVariable("email") String email){
         return userRep.findByEmail(email);
     }
-
-//    private final ItemTypeRep itemTypeRep;
-//
-//    @Autowired
-//    public ApiController(ItemTypeRep itemTypeRep) {
-//        this.itemTypeRep = itemTypeRep;
-//    }
-//
-//    @GetMapping("/itemType")
-//    public Iterable<ItemType> getItemTypes() {
-//        return itemTypeRep.findAll();
-//    }
-//
-//    @GetMapping("/itemTypes/{id}")
-//    public ResponseEntity<ItemType> getItemTypeById (@PathVariable(value = "id") Long itemTypeId){
-//        ItemType itemType = itemTypeRep.findOne(itemTypeId);
-//        if (itemType == null){
-//            return ResponseEntity.notFound().build();
-//        }
-//
-//        return ResponseEntity.ok().body(itemType);
-//    }
-
-
 }
