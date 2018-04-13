@@ -12,16 +12,14 @@
 </template>
 
 <script>
+import axios from 'axios'
 /* eslint-disable */
 export default {
   name: 'EditPage',
   methods: {
     sendData: function () {
       let formData = new FormData();
-      let data_string = document.getElementById("text_area").value;
-      let data = new Blob([data_string], {
-        type: 'text/plain'
-      });
+      let data = document.getElementById("text_area").value;
       let name = document.getElementById("article_name").value;
       let author = "hui ego znaet";
       let tag = "i eto tozhe";
@@ -29,7 +27,7 @@ export default {
       formData.append("name", name);
       formData.append("author", author);
       formData.append("tag", tag);
-      Vue.axios.post("/api/article/upload_article", formData)
+      axios.post("/api/article/upload_article", formData)
         .then(function (response) {
           console.log(response);
         })
