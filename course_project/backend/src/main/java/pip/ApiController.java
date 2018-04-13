@@ -53,6 +53,9 @@ public class ApiController {
         if (article == null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
+        ArticleRepresent articleRepresent = new ArticleRepresent(article.getName(), article.getAuthor(), article.getTag());
+        articleRepresent.setContent(new String(article.getContent()));
+        articleRepresent.setDateTime(article.getDateTime());
         return ResponseEntity.ok().body(article);
     }
 

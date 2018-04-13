@@ -1,16 +1,8 @@
-package pip.database;
+package pip;
 
-import lombok.Data;
-
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Data
-@Table(name = "articles")
-public class Article {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+public class ArticleRepresent {
     private Long id;
 
     private String name;
@@ -19,26 +11,13 @@ public class Article {
 
     private String tag;
 
-    @Lob @Basic(fetch = FetchType.LAZY)
-    private byte[] content;
+    private String content;
 
-    @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime dateTime;
 
 
-    public Article(){
-        dateTime = LocalDateTime.now();
-    }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
-    }
-
-    public Article(String name, String author, String tag){
+    public ArticleRepresent(String name, String author, String tag){
         this.name = name;
         this.author = author;
         this.tag = tag;
@@ -76,11 +55,19 @@ public class Article {
         this.tag = tag;
     }
 
-    public byte[] getContent() {
+    public String getContent() {
         return content;
     }
 
-    public void setContent(byte[] content) {
+    public void setContent(String content) {
         this.content = content;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 }
