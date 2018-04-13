@@ -21,12 +21,15 @@
 </template>
 
 <script>
-import TopButtonComponent from './elements/TopButtonComponent'
+import axios from 'axios'
 
 export default {
   name: 'LoginPage',
-  components: {
-    'top-button-component': TopButtonComponent
+  methods: {
+    login: function () {
+      console.log(login);
+      console.log(password)
+    }
   }
 }
 </script>

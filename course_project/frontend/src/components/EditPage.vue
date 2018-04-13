@@ -29,7 +29,7 @@ export default {
       formData.append("name", name);
       formData.append("author", author);
       formData.append("tag", tag);
-      axios.post("/api/article/upload_article", formData)
+      Vue.axios.post("/api/article/upload_article", formData)
         .then(function (response) {
           console.log(response);
         })
