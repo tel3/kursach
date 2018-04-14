@@ -78,9 +78,14 @@ public class ApiController {
         return ResponseEntity.ok().body(articleRepresents);
     }
 
-    @PostMapping(path = "/user")
+    @PostMapping(path = "/user/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody long addNewUser (@RequestParam String password, @RequestParam String email) {
+    public @ResponseBody long addNewUser (@RequestParam String password, @RequestParam String email) throws Exception {
+
+        if (emailExist(email)){
+            throw new Exception("There is an account with that email address:" + email);
+        }
+
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
@@ -88,6 +93,14 @@ public class ApiController {
         userRep.save(user);
 
         return user.getId();
+    }
+
+    private boolean emailExist(String email) {
+        User user = userRep.findByEmail(email);
+        if (user != null) {
+            return true;
+        }
+        return false;
     }
 
     @GetMapping(path="/user/{id}")
