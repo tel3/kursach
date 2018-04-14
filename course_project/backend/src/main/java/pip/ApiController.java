@@ -80,10 +80,10 @@ public class ApiController {
 
     @PostMapping(path = "/user/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody long addNewUser (@RequestParam String password, @RequestParam String email) throws Exception {
+    public @ResponseBody ResponseEntity addNewUser (@RequestParam String password, @RequestParam String email){
 
         if (emailExist(email)){
-            throw new Exception("There is an account with that email address:" + email);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
 
         User user = new User();
@@ -92,7 +92,7 @@ public class ApiController {
         user.setRole("USER");
         userRep.save(user);
 
-        return user.getId();
+        return ResponseEntity.ok().body(null);
     }
 
     private boolean emailExist(String email) {
