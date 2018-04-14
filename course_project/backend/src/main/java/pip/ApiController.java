@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -61,12 +62,20 @@ public class ApiController {
 
     @GetMapping("/article/tag/{tag}")
     @ResponseBody
-    public ResponseEntity<Iterable<Article>> getArticlesByTag(@PathVariable("tag") String tag){  //empty json
+    public ResponseEntity<Iterable<ArticleRepresent>> getArticlesByTag(@PathVariable("tag") String tag){  //empty json
         List<Article> articles = articleRep.findByTag(tag);
         if (articles.isEmpty()){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-        return ResponseEntity.ok().body(articles);
+        List<ArticleRepresent> articleRepresents = new ArrayList<>();
+        for (Article article : articles) {
+            ArticleRepresent articleRepresent = new ArticleRepresent(article.getName(), article.getAuthor(), article.getTag());
+            articleRepresent.setContent(new String(article.getContent()));
+            articleRepresent.setDateTime(article.getDateTime());
+            articleRepresents.add(articleRepresent);
+
+        }
+        return ResponseEntity.ok().body(articleRepresents);
     }
 
     @PostMapping(path = "/user")
