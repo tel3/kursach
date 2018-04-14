@@ -104,12 +104,24 @@ public class ApiController {
     }
 
     @GetMapping(path="/user/{id}")
-    public @ResponseBody User getUserById(@PathVariable("id") long id) {
-        return userRep.findOne(id);
+    public @ResponseBody ResponseEntity<User> getUserById(@PathVariable("id") long id) {
+        User user = userRep.findOne(id);
+
+        if (user == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
+        return ResponseEntity.ok().body(user);
     }
 
     @GetMapping(path = "/user/{email}")
-    public @ResponseBody User getUserByEmail(@PathVariable("email") String email){
-        return userRep.findByEmail(email);
+    public @ResponseBody ResponseEntity<User> getUserByEmail(@PathVariable("email") String email){
+        User user = userRep.findByEmail(email);
+
+        if (user == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
+        return ResponseEntity.ok().body(user);
     }
 }
