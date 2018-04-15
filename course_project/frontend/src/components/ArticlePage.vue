@@ -1,51 +1,45 @@
 <template>
   <div id="main_block">
     <div class="text_block" id="text_field">
-      <h3>Article title</h3>
-      <p>Here lies text of this article, as ruthless as it is pointless. Here lies text of this article, as ruthless as it is pointless. Here lies text of this article, as ruthless as it is pointless. Here lies text of this article, as ruthless as it is pointless. Here lies text of this article, as ruthless as it is pointless.</p>
-      <p>No hints shell be given, no help shall be given. This text bares no sence whatsoever.</p>
-      <p>Here lies text of this article, as ruthless as it is pointless.</p>
-      <p>No hints shell be given, no help shall be given. This text bares no sence whatsoever.</p>
-      <p>Here lies text of this article, as ruthless as it is pointless.</p>
-      <p>No hints shell be given, no help shall be given. This text bares no sence whatsoever.</p>
-      <p>Here lies text of this article, as ruthless as it is pointless.</p>
-      <p>COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL! COPYPASTE SHALL PREVAIL!</p>
-      <p>No hints shell be given, no help shall be given. This text bares no sence whatsoever.</p>
-      <p>Here lies text of this article, as ruthless as it is pointless.</p>
-      <p>No hints shell be given, no help shall be given. This text bares no sence whatsoever.</p>
-      <p>Here lies text of this article, as ruthless as it is pointless.</p>
-      <p>No hints shell be given, no help shall be given. This text bares no sence whatsoever.</p>
-      <p>Here lies text of this article, as ruthless as it is pointless.</p>
-      <p>No hints shell be given, no help shall be given. This text bares no sence whatsoever.</p>
-      <p>Here lies text of this article, as ruthless as it is pointless.</p>
-      <p>No hints shell be given, no help shall be given. This text bares no sence whatsoever.</p>
-      <p>Here lies text of this article, as ruthless as it is pointless.</p>
-      <p>No hints shell be given, no help shall be given. This text bares no sence whatsoever.</p>
-      <button class="font_button">Like article</button>
-      <button class="font_button">Edit article</button>
-      <button class="font_button">Delete article</button>
+			<h3>{{ articleName }}</h3>
+			<h4>Author: {{ articleAuthor }}</h4>
+			<span v-html="articleContent"></span>
     </div>  
-    <div class="comments" id="comments_field">
-      <h3>Comments:</h3>
-      <hr>
-      <h5>СОМЯАДЕ TEL3 <span>07-03-2018</span></h5>
-      <p>Лёня хуй</p>
-      <p>-delete- -edit- (для одменов)</p>
-      <hr>
-      <h5>Axis <span>07-03-2018</span></h5>
-      <p>Полностью поддерживаю предыдущего комментатора</p>
-      <p>-delete- -edit- (для одменов)</p>
-      <hr>
-      <h5>Fairy <span>07-03-2018</span></h5>
-      <p>Харе хернёй страдать курсач делайте блять (((((((((0000000</p>
-      <p>-delete- -edit- (для одменов)</p>
-    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'ArticlePage'
+	name: 'ArticlePage',
+	data: function () {
+		return {
+			articleName: 'None',
+			articleAuthor: 'None',
+			articleTag: 'None',
+			articleContent: 'None'
+		}
+	},
+	methods: {
+		getPageContent: function () {
+			let articleID = this.$route.params.id; 
+			axios.get('/api/articles/' + articleID)
+			.then(response => {
+				console.log(response);
+				this.articleName = response.data.name;
+				this.articleAuthor = response.data.author;
+				this.articleTag = response.data.tag;
+				this.articleContent = atob(response.data.content);
+			})
+			.catch(e => {
+				console.log(e)
+			}) 
+		}
+	},
+	mounted () {
+		this.getPageContent();
+	}
 }
 </script>
 
