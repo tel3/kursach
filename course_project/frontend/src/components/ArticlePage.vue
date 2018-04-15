@@ -3,6 +3,7 @@
     <div class="text_block" id="text_field">
 			<h3>{{ articleName }}</h3>
 			<h4>Author: {{ articleAuthor }}</h4>
+			<h4>Tag: {{ articleTag }}</h4>
 			<span v-html="articleContent"></span>
     </div>  
   </div>
@@ -15,10 +16,10 @@ export default {
 	name: 'ArticlePage',
 	data: function () {
 		return {
-			articleName: 'None',
-			articleAuthor: 'None',
-			articleTag: 'None',
-			articleContent: 'None'
+			articleName: '',
+			articleAuthor: '',
+			articleTag: '',
+			articleContent: 'Loading...'
 		}
 	},
 	methods: {

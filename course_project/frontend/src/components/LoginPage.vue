@@ -3,10 +3,10 @@
     <div class="text_block" id="left">
       <h4>Войти:</h4>
         <form>
-          <input type="text" class="sign_form" name="username_in" placeholder="Введите логин"> <br>
-          <input type="password" class="sign_form" name="password_in" placeholder="Введите пароль"> <br>
-          <input type="submit" class="sign_button" name="sign_in" value="Войти">
+          <input type="text" class="sign_form" id="username_in" placeholder="Введите логин"> <br>
+          <input type="password" class="sign_form" id="password_in" placeholder="Введите пароль"> <br>
         </form>
+        <button class="sign_button" name="sign_in" v-on:click="loginButton">Войти</button>
       </div>
       <div class="text_block">
         <h4>Зарегистрироваться:</h4>
@@ -22,13 +22,15 @@
 
 <script>
 import axios from 'axios'
+import { login } from '../utils/auth.js'
 
 export default {
   name: 'LoginPage',
   methods: {
-    login: function () {
-      console.log(login);
-      console.log(password)
+    loginButton: function () {
+      const user_login = document.getElementById("username_in").value;
+      const user_password = document.getElementById("password_in").value;
+      login(user_login, user_password);
     }
   }
 }
