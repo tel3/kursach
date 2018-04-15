@@ -22,4 +22,4 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-backend/src/main/resources
+course_project/backend/src/main/resources
