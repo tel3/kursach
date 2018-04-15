@@ -1,9 +1,11 @@
 package pip.database;
 
 import lombok.Data;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Data
@@ -21,7 +23,7 @@ public class Article {
 
     private byte[] content;
 
-    @Convert(converter = LocalDateTimeConverter.class)
+    @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
     private LocalDateTime dateTime;
 
 
