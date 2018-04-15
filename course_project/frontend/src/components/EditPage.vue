@@ -4,6 +4,7 @@
       <h4>Создать статью:</h4>
       <form>
         <input type="text" class="name_form" id="article_name" placeholder="Введите название статьи"> <br>
+        <input type="text" class="name_form" id="article_tag" placeholder="Введите тег"> <br>
         <textarea id="text_area" placeholder="Текст статьи"></textarea><br>
       </form>
       <button class="submit_button" v-on:click="sendData">Отправить статью</button>
@@ -21,8 +22,8 @@ export default {
       let formData = new FormData();
       let data = document.getElementById("text_area").value;
       let name = document.getElementById("article_name").value;
+      let tag = document.getElementById("article_tag").value;
       let author = "hui ego znaet";
-      let tag = "i eto tozhe";
       formData.append("file", data);
       formData.append("name", name);
       formData.append("author", author);
