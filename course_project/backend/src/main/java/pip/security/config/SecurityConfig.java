@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                         // Allow anonymous access to "/" path
 //                        .antMatchers("/", "/static/*").permitAll()
-                        .antMatchers("/api/**").access("hasRole('ADMIN') or hasRole('MODERATOR')")
+                        .antMatchers("/api/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR')")
                         // Allow anonymous access to "/login" (only POST requests)
                         .antMatchers(HttpMethod.POST, "/login").permitAll()
                         // Any other request must be authenticated
