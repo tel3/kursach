@@ -19,7 +19,6 @@ public class Article {
 
     private String tag;
 
-    @Lob @Basic(fetch = FetchType.LAZY)
     private byte[] content;
 
     @Convert(converter = LocalDateTimeConverter.class)
