@@ -40,12 +40,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 // Security policy
                 .authorizeRequests()
-                // Allow anonymous access to "/" path
-                .antMatchers("/").permitAll()
-                // Allow anonymous access to "/login" (only POST requests)
-                .antMatchers(HttpMethod.POST, "/login").permitAll()
-                // Any other request must be authenticated
-                .anyRequest().authenticated().and()
+                        // Allow anonymous access to "/" path
+//                        .antMatchers("/", "/static/*").permitAll()
+                        .antMatchers("/api/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MODERATOR')")
+                        // Allow anonymous access to "/login" (only POST requests)
+                        .antMatchers(HttpMethod.POST, "/login").permitAll()
+                        // Any other request must be authenticated
+                        .anyRequest().permitAll().and()
                 // Custom filter for logging in users at "/login"
                 .addFilterBefore(new JWTLoginFilter("/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
                 // Custom filter for authenticating users using tokens

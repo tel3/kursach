@@ -113,13 +113,13 @@ public class TokenHandler {
      */
     public String parse(String token) {
 
-        String username = Jwts.parser()
+        String email = Jwts.parser()
                 .setSigningKey(SECRET)
                 .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
                 .getBody()
                 .getSubject();
 
-        return userDetailsService.loadUserByUsername(username).getUsername();
+        return userDetailsService.loadUserByUsername(email).getUsername();
 
     }
 
