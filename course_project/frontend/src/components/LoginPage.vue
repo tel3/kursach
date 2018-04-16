@@ -11,11 +11,11 @@
       <div class="text_block">
         <h4>Зарегистрироваться:</h4>
         <form>
-          <input type="text" class="sign_form" name="username_up" placeholder="Введите действительный адрес электронной почты"> <br>
-          <input type="password" class="sign_form" name="password_up" placeholder="Введите свой пароль"> <br>
-          <input type="password" class="sign_form" name="password_up_confirm" placeholder="Введите пароль повторно"> <br>
-          <input type="submit" class="sign_button" name="sign_up" value="Зарегистрироваться">
+          <input type="text" class="sign_form" id="username_up" placeholder="Введите действительный адрес электронной почты"> <br>
+          <input type="password" class="sign_form" id="password_up" placeholder="Введите свой пароль"> <br>
+          <input type="password" class="sign_form" id="password_up_confirm" placeholder="Введите пароль повторно"> <br>
         </form>
+        <button class="sign_button" name="sign_in" v-on:click="registerButton">Зарегистрироваться</button>
       </div>
   </div>
 </template>
@@ -30,7 +30,28 @@ export default {
     loginButton: function () {
       const user_login = document.getElementById("username_in").value;
       const user_password = document.getElementById("password_in").value;
-      login(user_login, user_password);
+      // login(user_login, user_password);
+      if (user_login != localStorage.getItem('login') || user_password != localStorage.getItem('password')) {
+        alert ("Неверный логин или пароль")
+      }
+      else {
+        localStorage.setItem('logged_in', true);
+        localStorage.setItem('status', 'user')
+        this.$router.push('/');
+      }
+    },
+    registerButton: function () {
+      const user_login = document.getElementById("username_up").value;
+      const user_password = document.getElementById("password_up").value;
+      const user_password_confirm = document.getElementById("password_up_confirm").value;
+      if (user_password != user_password_confirm) {
+        alert ("Пароли не совпадают!")
+      }
+      else {
+        localStorage.setItem('login', user_login);
+        localStorage.setItem('password', user_password);
+        this.$router.push('/');
+      }
     }
   }
 }

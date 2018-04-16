@@ -1,7 +1,9 @@
 <template>
 <div id="main_block">
   <div class="text_block">
-    <button class="create_button" onclick="">Добавить статью</button>
+    <router-link to="/edit/">
+      <button class="create_button">Добавить статью</button>
+    </router-link>
     <h3>Catalog of articles: all articles (or tag name here)</h3>
     <hr>
     <div class="row">

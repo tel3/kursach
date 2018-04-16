@@ -6,11 +6,11 @@
     <router-link to="/catalog/">
       <button v-bind:class="[buttonClass, currentRole == 'admin' ? adminClass : '']">Каталог</button>
     </router-link>
-    <router-link v-if="currentStatus == false" to="/login/">
+    <router-link v-if="!currentStatus" to="/login/">
       <button v-bind:class="[buttonClass, currentRole == 'admin' ? adminClass : '']">Войти</button>
     </router-link>
-    <router-link v-else-if="currentStatus == true" to="/login/">
-      <button v-bind:class="[buttonClass, currentRole == 'admin' ? adminClass : '']">Выйти</button>
+    <router-link v-else to="/">
+      <button v-bind:class="[buttonClass, currentRole == 'admin' ? adminClass : '']" v-on-click="logout">Выйти</button>
     </router-link>
     <router-link v-if="currentRole == 'admin'" to="/">
       <button v-bind:class="[buttonClass, adminClass]">Панель управления</button>
@@ -33,16 +33,18 @@ export default {
   },
   data: function () {
     return {
-      currentRole: this.role,
-      currentStatus: this.status,
+      currentRole: localStorage.getItem('logged_in'),
+      currentStatus: localStorage.getItem('status'),
       buttonClass: 'button',
       adminClass: 'admin_button'
     }
   },
   methods: {
-    login () {
+    logout () {
       this.currentRole = 'user'
-      this.currentStatus = true
+      this.currentStatus = false
+      localStorage.removeItem('logged_in')
+      localStorage.removeItem('status')
     },
     makeAdmin () {
       if (this.currentRole === 'user') {
