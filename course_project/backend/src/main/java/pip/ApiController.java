@@ -11,8 +11,7 @@ import pip.database.ArticleRep;
 import pip.database.User;
 import pip.database.UserRep;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
@@ -76,6 +75,22 @@ public class ApiController {
 
         }
         return ResponseEntity.ok().body(articleRepresents);
+    }
+
+    @GetMapping("/tags")
+    @ResponseBody
+    public ResponseEntity<Set<String>> getTags(){
+        List<Article> articles = (LinkedList)articleRep.findAll();
+        if (articles.isEmpty()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        Set<String> tags = new HashSet<>();
+        for (Article article : articles) {
+            tags.add(article.getTag());
+        }
+
+
+        return ResponseEntity.ok().body(tags);
     }
 
     @PostMapping(path = "/user/add")
