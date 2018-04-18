@@ -23,7 +23,7 @@ public class Article {
 
     private byte[] content;
 
-    @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime dateTime;
 
 
