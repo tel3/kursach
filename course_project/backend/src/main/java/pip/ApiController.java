@@ -80,7 +80,7 @@ public class ApiController {
     @GetMapping("/tags")
     @ResponseBody
     public ResponseEntity<Set<String>> getTags(){
-        List<Article> articles = (LinkedList)articleRep.findAll();
+        List<Article> articles = (ArrayList)articleRep.findAll();
         if (articles.isEmpty()){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
@@ -88,7 +88,6 @@ public class ApiController {
         for (Article article : articles) {
             tags.add(article.getTag());
         }
-
 
         return ResponseEntity.ok().body(tags);
     }
