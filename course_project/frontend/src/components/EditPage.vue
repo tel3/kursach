@@ -6,7 +6,7 @@
         <input type="text" class="name_form" id="article_name" placeholder="Введите название статьи"> <br>
         <input type="text" class="name_form" id="tag" placeholder="Введите тег для статьи"> <br>
         <input type="text" class="name_form" id="author" placeholder="Введите автора статьи"> <br>
-        <textarea id="text_area" class="article_form" placeholder="Текст статьи"></textarea><br>
+        <textarea id="text_area" class="article_form" placeholder="Текст статьи" rows="20"></textarea><br>
       </form>
       <button class="submit_button" v-on:click="sendData">Отправить статью</button>
     </div>
@@ -121,11 +121,19 @@ h4 {
 
 .article_form {
   resize: none;
+  width: 95%;
 }
 
 @media screen and (max-width: 671px) {
   #main_block {
     width: 80%;
+  }
+
+  .name_form {
+    margin-bottom: 12px;
+    width: 95%;
+    height: 25px;
+    border-radius: 4px;
   }
 
   .text_block {
@@ -140,8 +148,6 @@ h4 {
   .button {
     margin-bottom: 1px;
     width: 100%;
-    display: inline;
-
   }
 
   #left {
