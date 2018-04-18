@@ -40,9 +40,28 @@
 </template>
 
 <script>
+import axios from 'axios'
+/* eslint-disable */
 export default {
-  name: 'CatalogPage'
-}
+  name: 'CatalogPage',
+  data: function () {
+    tagsArray: []
+  },
+  methods: {
+    getTags: function () {
+      axios.get('/api/tags')
+      .then(response => {
+        this.tagsArray = JSON.parse(response);
+      })
+      .catch(e => {
+        console.log(e)
+      })
+    },  
+    getArticles: function () {
+      axios.get('/api/articles')
+    }   
+  }
+} 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
