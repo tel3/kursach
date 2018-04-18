@@ -4,7 +4,9 @@
       <h4>Создать статью:</h4>
       <form>
         <input type="text" class="name_form" id="article_name" placeholder="Введите название статьи"> <br>
-        <textarea id="text_area" placeholder="Текст статьи"></textarea><br>
+        <input type="text" class="name_form" id="tag" placeholder="Введите тег для статьи"> <br>
+        <input type="text" class="name_form" id="author" placeholder="Введите автора статьи"> <br>
+        <textarea id="text_area" class="article_form" placeholder="Текст статьи"></textarea><br>
       </form>
       <button class="submit_button" v-on:click="sendData">Отправить статью</button>
     </div>
@@ -19,10 +21,10 @@ export default {
   methods: {
     sendData: function () {
       let formData = new FormData();
-      let data = document.getElementById("text_area").value;
-      let name = document.getElementById("article_name").value;
-      let author = "hui ego znaet";
-      let tag = "i eto tozhe";
+      const data = document.getElementById("text_area").value;
+      const name = document.getElementById("article_name").value;
+      const author = document.getElementById("author").value;
+      const tag = document.getElementById("tag").value;;
       formData.append("file", data);
       formData.append("name", name);
       formData.append("author", author);
@@ -30,11 +32,19 @@ export default {
       axios.post("/api/article/upload_article", formData)
         .then(function (response) {
           console.log(response);
+          this.redirectOnSuccess();
         })
         .catch(function (error) {
           console.log(error);
+          this.redirectOnError();
         }); 
-    }
+      },  
+    redirectOnError: function () {
+      alert("Ошибка при загрузке статьи!")
+    },
+    redirectOnSuccess: function () {
+      alert("Статья успешно загружена на сервер!")
+    }  
   }
 }
 </script>
@@ -107,6 +117,10 @@ h4 {
   border-radius: 4px;
   margin-top: 7px;
   margin-bottom: 10px;
+}
+
+.article_form {
+  resize: none;
 }
 
 @media screen and (max-width: 671px) {
