@@ -39,7 +39,7 @@ public class ApiController {
             article.setContent(bytes);
             articleRep.save(article);
             LOG.info("article uploaded!");
-            return ResponseEntity.ok().body(null);
+            return ResponseEntity.ok().body(article.getId());
         }
         catch (Exception e){
             LOG.info(e.getLocalizedMessage());
