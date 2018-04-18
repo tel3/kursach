@@ -43,6 +43,7 @@ public class Article {
         this.name = name;
         this.author = author;
         this.tag = tag;
+        this.dateTime = LocalDateTime.now();
     }
 
     public Long getId() {
