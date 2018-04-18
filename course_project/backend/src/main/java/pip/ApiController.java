@@ -92,6 +92,25 @@ public class ApiController {
         return ResponseEntity.ok().body(tags);
     }
 
+    @GetMapping("/digest")
+    @ResponseBody
+    public ResponseEntity <Iterable<Article>> getDigest(){
+        List<Article> articles = (ArrayList)articleRep.findAll();
+        if (articles.isEmpty()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
+        Collections.sort(articles, new Comparator<Article>() {
+            public int compare(Article o1, Article o2) {
+                return o1.getDateTime().compareTo(o2.getDateTime());
+            }
+        });
+
+        articles = articles.subList(0, 5);
+
+        return ResponseEntity.ok().body(articles);
+    }
+
     @PostMapping(path = "/user/add")
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody ResponseEntity addNewUser (@RequestParam String password, @RequestParam String email){
