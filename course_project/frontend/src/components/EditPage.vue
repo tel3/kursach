@@ -19,6 +19,12 @@ import axios from 'axios'
 export default {
   name: 'EditPage',
   methods: {
+    redirectOnError: function () {
+      alert("Ошибка при загрузке статьи!")
+    },
+    redirectOnSuccess: function () {
+      alert("Статья успешно загружена на сервер!")
+    },
     sendData: function () {
       let formData = new FormData();
       const data = document.getElementById("text_area").value;
@@ -30,21 +36,15 @@ export default {
       formData.append("author", author);
       formData.append("tag", tag);
       axios.post("/api/article/upload_article", formData)
-        .then(function (response) {
+        .then(response => {
           console.log(response);
-          this.redirectOnSuccess();
+          this.redirectOnSuccess()
         })
-        .catch(function (error) {
-          console.log(error);
-          this.redirectOnError();
+        .catch(e => {
+          console.log(e);
+          this.redirectOnError()
         }); 
-      },  
-    redirectOnError: function () {
-      alert("Ошибка при загрузке статьи!")
-    },
-    redirectOnSuccess: function () {
-      alert("Статья успешно загружена на сервер!")
-    }  
+    }   
   }
 }
 </script>
