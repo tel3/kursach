@@ -59,6 +59,19 @@ public class ApiController {
         return ResponseEntity.ok().body(article);
     }
 
+    @GetMapping("/article/delete/{id}")
+    @ResponseBody
+    public ResponseEntity<Article> deleteArticle(@PathVariable("id") Long articleId){
+        Article article = articleRep.findOne(articleId);
+        if (article == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
+        articleRep.delete(articleId);
+
+        return ResponseEntity.ok().body(null);
+    }
+
     @GetMapping("/article/tag/{tag}")
     @ResponseBody
     public ResponseEntity<Iterable<ArticleRepresent>> getArticlesByTag(@PathVariable("tag") String tag){  //empty json
