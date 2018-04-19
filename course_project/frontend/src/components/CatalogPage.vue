@@ -45,13 +45,20 @@ import axios from 'axios'
 export default {
   name: 'CatalogPage',
   data: function () {
-    tagsArray: []
+    return {
+      tagsArray: [],
+      articlesList: [],
+      renderedArticlesList: [],
+      currentTag: ''
+    }  
   },
   methods: {
     getTags: function () {
       axios.get('/api/tags')
       .then(response => {
-        this.tagsArray = JSON.parse(response);
+        console.log(response)
+        this.tagsArray = response.data;
+        console.log(this.tagsArray)
       })
       .catch(e => {
         console.log(e)
@@ -59,7 +66,20 @@ export default {
     },  
     getArticles: function () {
       axios.get('/api/articles')
+      .then(response => {
+        console.log(Object.assign({}, (response.data._embedded.articles)));
+        const response_data = response.data._embedded.articles;
+        console.log(Object.assign({}, response_data));
+        this.articlesList = response_data
+      })
+      .catch(e => {
+        console.log(e)
+      })
     }   
+  },
+  mounted () {
+    this.getArticles();
+    this.getTags()
   }
 } 
 </script>

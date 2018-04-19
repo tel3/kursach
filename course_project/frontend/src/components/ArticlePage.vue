@@ -31,7 +31,9 @@ export default {
 				this.articleName = response.data.name;
 				this.articleAuthor = response.data.author;
 				this.articleTag = response.data.tag;
-				this.articleContent = atob(response.data.content);
+				this.articleContent = decodeURIComponent(atob(response.data.content).split('').map(function(c) {
+					return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    		}).join(''));
 			})
 			.catch(e => {
 				console.log(e)
