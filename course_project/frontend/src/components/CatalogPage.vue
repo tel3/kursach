@@ -57,7 +57,7 @@ export default {
       axios.get('/api/tags')
       .then(response => {
         console.log(response)
-        this.tagsArray = response.data;
+        this.tagsArray = response.data
         console.log(this.tagsArray)
       })
       .catch(e => {
@@ -67,19 +67,34 @@ export default {
     getArticles: function () {
       axios.get('/api/articles')
       .then(response => {
-        console.log(Object.assign({}, (response.data._embedded.articles)));
-        const response_data = response.data._embedded.articles;
-        console.log(Object.assign({}, response_data));
+        console.log(Object.assign({}, (response.data._embedded.articles)))
+        const response_data = response.data._embedded.articles
+        console.log(Object.assign({}, response_data))
         this.articlesList = response_data
+        this.renderedArticlesList = this.articlesList
       })
       .catch(e => {
         console.log(e)
       })
-    }   
+    },
+    filterByTag: function () {
+      if (this.currentTag != 'All') {
+        this.renderedArticlesList = [];
+        for (var i = 0; i < this.articlesList; i++) {
+          if (this.articlesList[i].tag == this.currentTag) {
+            this.renderedArticlesList.push(this.articlesList[i])
+          } 
+        }
+      }
+      else {
+        this.renderedArticlesList = this.articlesList
+      }
+    } 
   },
   mounted () {
     this.getArticles();
-    this.getTags()
+    this.getTags();
+    this.currentTag = 'All';
   }
 } 
 </script>

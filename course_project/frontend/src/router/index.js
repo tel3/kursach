@@ -6,6 +6,7 @@ import ArticlePage from '@/components/ArticlePage'
 import AdminPage from '@/components/AdminPage'
 import LoginPage from '@/components/LoginPage'
 import EditPage from '@/components/EditPage'
+import ErrorPage from '@/components/ErrorPage'
 
 Vue.use(Router)
 
@@ -44,6 +45,11 @@ export default new Router({
       path: '/admin/',
       name: 'AdminPage',
       component: AdminPage
+    },
+    {
+      path: '/error/:error',
+      name: 'ErrorPage',
+      component: ErrorPage
     }
   ]
 })
