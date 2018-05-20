@@ -49,7 +49,7 @@ export default {
     		}).join(''));
           itemsNew.push({id: i + 1, name: articlesNew[i].name, content: contentNew, tag: articlesNew[i].tag})
         }
-        this.items = itemsNew.reverse().slice(0, 5);
+        this.items = itemsNew.reverse();
         console.log(this.items);
       })
       .catch(e => {
@@ -164,7 +164,9 @@ h4 {
   flex: 20%;
   background-color: #303030;
   padding-left: 10px;
+  padding-bottom: 15px;
   margin-top: 30px;
+  margin-bottom: 40px;
 }
 
 @media screen and (max-width: 671px) {

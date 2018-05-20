@@ -72,7 +72,7 @@ h4 {
   margin: auto;
   margin-top: 5px;
   display: inline-block;
-  width: 464px;
+  width: 962px;
   background-color: #202020;
   color: white;
   padding-left: 10px;
