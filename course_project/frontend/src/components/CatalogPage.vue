@@ -164,7 +164,9 @@ h4 {
   flex: 20%;
   background-color: #303030;
   padding-left: 10px;
+  padding-bottom: 15px;
   margin-top: 30px;
+  margin-bottom: 40px;
 }
 
 @media screen and (max-width: 671px) {
