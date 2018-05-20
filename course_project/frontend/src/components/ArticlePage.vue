@@ -4,7 +4,7 @@
 			<h3>{{ articleName }}</h3>
 			<h4>Author: {{ articleAuthor }}</h4>
 			<h4>Tag: {{ articleTag }}</h4>
-			<span v-html="articleContent"></span>
+			<span class="html_vue" v-html="articleContent"></span>
     </div>  
   </div>
 </template>
@@ -76,8 +76,12 @@ h5 {
 	padding-left: 40px;
 	padding-right: 40px;
 	margin-bottom: 15px;
-	overflow: auto;
+	overflow-y: auto;
 	padding-bottom: 10px;
+}
+
+.html_vue {
+	word-wrap: break-word;
 }
 
 #left {
