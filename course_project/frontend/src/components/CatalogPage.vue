@@ -8,31 +8,15 @@
     <hr>
     <div class="row">
       <div class="column">
-        <h4>Article 1 (link)</h4>
-        <p>Article description article description article description article description article description article description article description article description.</p>
-        <h4>Article 2 (link)</h4>
-        <p>Article description article description article description article description article description article description article description article description.</p>
-        <h4>Article 3 (link)</h4>
-        <p>Article description article description article description article description article description article description article description article description.</p>
-        <h4>Article 4 (link)</h4>
-        <p>Article description article description article description article description article description article description article description article description.</p>
-        <h4>Article 5 (link)</h4>
-        <p>Article description article description article description article description article description article description article description article description.</p>
-        <h4>Article 6 (link)</h4>
-        <p>Article description article description article description article description article description article description article description article description.</p>
-        <h4>Article 7 (link)</h4>
-        <p>Article description article description article description article description article description article description article description article description.</p>
-        <h4>Article 8 (link)</h4>
-        <p>Article description article description article description article description article description article description article description article description.</p>
-        <h4>Article 9 (link)</h4>
-        <p>Article description article description article description article description article description article description article description article description.</p>
-        <h4>Article 10 (link)</h4>
-        <p>Article description article description article description article description article description article description article description article description.</p>
-        <h4>Article 11 (link)</h4>
-        <p>Article description article description article description article description article description article description article description article description.</p>
+        <template v-for="item in items">
+          <h4><router-link :to="'/article/' + item.id">{{ item.name }}</router-link></h4>
+        </template>
       </div>
       <div class="small_column">
-        <p>#tag #tag #tag #tag #tag #tag #tag #tag #tag #tag #tag #tag #tag #tag #tag #tag #tag #tag #tag #tag #tag #tag #tag </p>
+        <h5>Теги:</h5>
+        <li v-for="tag in tags">
+          {{ tag }}
+        </li>
       </div>
     </div>
   </div>
@@ -46,55 +30,44 @@ export default {
   name: 'CatalogPage',
   data: function () {
     return {
-      tagsArray: [],
-      articlesList: [],
-      renderedArticlesList: [],
-      currentTag: ''
+      items: [],
+      tags: []
     }  
   },
   methods: {
-    getTags: function () {
-      axios.get('/api/tags')
-      .then(response => {
-        console.log(response)
-        this.tagsArray = response.data
-        console.log(this.tagsArray)
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    },  
-    getArticles: function () {
-      axios.get('/api/articles')
-      .then(response => {
-        console.log(Object.assign({}, (response.data._embedded.articles)))
-        const response_data = response.data._embedded.articles
-        console.log(Object.assign({}, response_data))
-        this.articlesList = response_data
-        this.renderedArticlesList = this.articlesList
-      })
-      .catch(e => {
-        console.log(e)
-      })
-    },
-    filterByTag: function () {
-      if (this.currentTag != 'All') {
-        this.renderedArticlesList = [];
-        for (var i = 0; i < this.articlesList; i++) {
-          if (this.articlesList[i].tag == this.currentTag) {
-            this.renderedArticlesList.push(this.articlesList[i])
-          } 
+    getPageContent: function () {
+			axios.get('/api/articles/')
+			.then(response => {
+        console.log(response.data._embedded.articles);
+        let articlesNew = response.data._embedded.articles;
+        let itemsNew = [];
+        for (let i=0; i<articlesNew.length; i++) {
+          let contentNew = decodeURIComponent(atob(articlesNew[i].content).split('').map(function(c) {
+					return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    		}).join(''));
+          itemsNew.push({id: i + 1, name: articlesNew[i].name, content: contentNew})
         }
-      }
-      else {
-        this.renderedArticlesList = this.articlesList
-      }
-    } 
+        this.items = itemsNew.reverse().slice(0, 5);
+        console.log(this.items);
+      })
+      .catch(e => {
+				console.log(e)
+			})
+    },
+    getTagsList: function () {
+      axios.get('/api/tags/')
+      .then(response => {
+        console.log(response);
+        this.tags = response.data;
+      })
+      .catch(e => {
+				console.log(e)
+			})
+    }
   },
   mounted () {
-    this.getArticles();
-    this.getTags();
-    this.currentTag = 'All';
+    this.getPageContent();
+    this.getTagsList();
   }
 } 
 </script>

@@ -4,10 +4,7 @@
       <h1>We Know</h1>
       <h2>Encyclopedia of TES: Skyrim guides</h2>
     </header>
-    <top-button-component
-      v-bind:status="false"
-      role="guest"
-    ></top-button-component>
+    <top-button-component></top-button-component>
     <router-view/>
   </div>
 </template>

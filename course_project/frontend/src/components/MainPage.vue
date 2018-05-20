@@ -1,42 +1,65 @@
 <template>
   <div id="main_block">
-    <div class="text_block" id="left">
+    <div class="text_block">
       <h3>Недавно добавленные статьи</h3>
       <hr>
-      <h4>Article 1</h4>
-      <p>This article doesn't really explain a fuck yet is completely filled with author's miserable jokes and memes and is mostly aimed at compensating absense of his social life and rising his own self-conceit by imitating a sence of usefulness and belonging.</p>
-      <hr>
-      <h4>Article 2</h4>
-      <p>This article doesn't really explain a fuck yet is completely filled with author's miserable jokes and memes and is mostly aimed at compensating absense of his social life and rising his own self-conceit by imitating a sence of usefulness and belonging.</p>
-      <hr>
-      <h4>Article 3</h4>
-      <p>This article doesn't really explain a fuck yet is completely filled with author's miserable jokes and memes and is mostly aimed at compensating absense of his social life and rising his own self-conceit by imitating a sence of usefulness and belonging.</p>
-      <hr>
-      <h4>Article 4</h4>
-      <p>This article doesn't really explain a fuck yet is completely filled with author's miserable jokes and memes and is mostly aimed at compensating absense of his social life and rising his own self-conceit by imitating a sence of usefulness and belonging.</p>
-    </div>
-    <div class="text_block">
-      <h3>Топ-5 лучших статей</h3>
-      <hr>
-      <h4>Article 1</h4>
-      <p>This article doesn't really explain a fuck yet is completely filled with author's miserable jokes and memes and is mostly aimed at compensating absense of his social life and rising his own self-conceit by imitating a sence of usefulness and belonging.</p>
-      <hr>
-      <h4>Article 2</h4>
-      <p>This article doesn't really explain a fuck yet is completely filled with author's miserable jokes and memes and is mostly aimed at compensating absense of his social life and rising his own self-conceit by imitating a sence of usefulness and belonging.</p>
-      <hr>
-      <h4>Article 3</h4>
-      <p>This article doesn't really explain a fuck yet is completely filled with author's miserable jokes and memes and is mostly aimed at compensating absense of his social life and rising his own self-conceit by imitating a sence of usefulness and belonging.</p>
-      <hr>
-      <h4>Article 4</h4>
-      <p>This article doesn't really explain a fuck yet is completely filled with author's miserable jokes and memes and is mostly aimed at compensating absense of his social life and rising his own self-conceit by imitating a sence of usefulness and belonging.</p>
+      <template v-for="item in items">
+        <h4>{{ item.name }}</h4>
+        <h5><router-link :to="'/article/' + item.id">Читать статью</router-link></h5>
+      </template>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'MainPage'
+  name: 'MainPage',
+  data: function () {
+		return {
+      items: [],
+      content: "",
+      articles: [],
+      contents: []
+		}
+	},
+  methods: {
+    getPageContent: function () {
+			axios.get('/api/articles/')
+			.then(response => {
+        console.log(response.data._embedded.articles);
+        let articlesNew = response.data._embedded.articles;
+        let itemsNew = [];
+        for (let i=0; i<articlesNew.length; i++) {
+          let contentNew = decodeURIComponent(atob(articlesNew[i].content).split('').map(function(c) {
+					return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    		}).join(''));
+          itemsNew.push({id: i + 1, name: articlesNew[i].name, content: contentNew})
+        }
+        this.items = itemsNew.reverse();
+        console.log(this.items);
+      })
+      .catch(e => {
+				console.log(e)
+			})
+    },
+    getTagsList: function () {
+      axios.get('/api/tags/')
+      .then(response => {
+        console.log(response);
+      })
+      .catch(e => {
+				console.log(e)
+			})
+    }
+  },
+  mounted () {
+		this.getPageContent();
+	}
 }
+  
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -59,30 +82,24 @@ h4 {
 .text_block {
   margin: auto;
   margin-top: 5px;
-  float: left;
   display: inline-block;
   width: 464px;
   background-color: #202020;
   color: white;
   padding-left: 10px;
   padding-right: 10px;
-}
-
-#left {
-  margin-right: 4px;
+  position: center;
 }
 
 @media screen and (max-width: 671px) {
   #main_block {
-    width: 80%;
+    width: 40%;
   }
 
   .text_block {
-
     padding-left: 2%;
     padding-right: 2%;
     width: 96%;
-    float: none;
     position: relative;
     margin-bottom: 1px;
   }
