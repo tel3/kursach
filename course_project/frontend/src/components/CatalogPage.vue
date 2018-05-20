@@ -4,18 +4,19 @@
     <router-link to="/edit/">
       <button class="create_button">Добавить статью</button>
     </router-link>
-    <h3>Catalog of articles: all articles (or tag name here)</h3>
+    <h3>Catalog of articles: {{ currentTag }}</h3>
     <hr>
     <div class="row">
       <div class="column">
-        <template v-for="item in items">
+        <template v-for="item in filteredArticles">
           <h4><router-link :to="'/article/' + item.id">{{ item.name }}</router-link></h4>
         </template>
       </div>
       <div class="small_column">
         <h5>Теги:</h5>
+        <a href="#" v-on:click="currentTag = 'All'">Все статьи</a>
         <li v-for="tag in tags">
-          {{ tag }}
+          <a href="#" v-on:click="changeCurrentTag(tag)">{{ tag }}</a>
         </li>
       </div>
     </div>
@@ -31,7 +32,8 @@ export default {
   data: function () {
     return {
       items: [],
-      tags: []
+      tags: [],
+      currentTag: 'All'
     }  
   },
   methods: {
@@ -45,7 +47,7 @@ export default {
           let contentNew = decodeURIComponent(atob(articlesNew[i].content).split('').map(function(c) {
 					return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     		}).join(''));
-          itemsNew.push({id: i + 1, name: articlesNew[i].name, content: contentNew})
+          itemsNew.push({id: i + 1, name: articlesNew[i].name, content: contentNew, tag: articlesNew[i].tag})
         }
         this.items = itemsNew.reverse().slice(0, 5);
         console.log(this.items);
@@ -63,6 +65,18 @@ export default {
       .catch(e => {
 				console.log(e)
 			})
+    },
+    changeCurrentTag: function (tag) {
+      this.currentTag = tag
+    }
+  },
+  computed: {
+    filteredArticles: function () {
+      return this.items.filter((item) => {
+        if (item.tag == this.currentTag || this.currentTag == 'All') {
+          return true
+        }
+      })
     }
   },
   mounted () {

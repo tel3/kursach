@@ -44,18 +44,11 @@ export default {
 				console.log(e)
 			})
     },
-    getTagsList: function () {
-      axios.get('/api/tags/')
-      .then(response => {
-        console.log(response);
-      })
-      .catch(e => {
-				console.log(e)
-			})
-    }
+    
   },
   mounted () {
-		this.getPageContent();
+    this.getPageContent();
+
 	}
 }
   
