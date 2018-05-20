@@ -37,6 +37,10 @@ body {
   font-size: 12pt;
 }
 
+a {
+  color: white;
+}
+
 h1 {
   font-family: DBfont, arial;
   text-align: center;

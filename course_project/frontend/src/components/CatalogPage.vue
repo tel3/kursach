@@ -49,7 +49,7 @@ export default {
     		}).join(''));
           itemsNew.push({id: i + 1, name: articlesNew[i].name, content: contentNew, tag: articlesNew[i].tag})
         }
-        this.items = itemsNew.reverse().slice(0, 5);
+        this.items = itemsNew.reverse();
         console.log(this.items);
       })
       .catch(e => {

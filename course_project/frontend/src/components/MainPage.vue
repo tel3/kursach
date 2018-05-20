@@ -37,7 +37,7 @@ export default {
     		}).join(''));
           itemsNew.push({id: i + 1, name: articlesNew[i].name, content: contentNew})
         }
-        this.items = itemsNew.reverse();
+        this.items = itemsNew.reverse().slice(0, 5);
         console.log(this.items);
       })
       .catch(e => {
